@@ -5,8 +5,6 @@ const HomePage = () => {
   return (
     <>
       <MetaTags title="Home" description="Home page" />
-
-      <h1>Bordle</h1>
       <p>Welcome to Bordle!</p>
     </>
   )

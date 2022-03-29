@@ -4,7 +4,9 @@ const BordleLayout = ({ children }) => {
   return (
     <>
       <header>
-        <h1>Bordle</h1>
+        <h1>
+          <Link to={routes.home()}>Bordle</Link>
+        </h1>
         <nav>
           <ul>
             <li>

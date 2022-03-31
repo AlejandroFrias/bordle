@@ -1,4 +1,3 @@
-import { AppBar } from '@mui/material'
 import { Link, routes } from '@redwoodjs/router'
 
 const BordleLayout = ({ children }) => {

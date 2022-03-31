@@ -1,14 +1,13 @@
-import { Box, FormControl, FormLabel, Stack, TextField } from '@mui/material'
-import { Form, Submit, useForm, Text, FieldError } from '@redwoodjs/forms'
-import { Link, routes } from '@redwoodjs/router'
+import { Button, Stack, TextField } from '@mui/material'
 import { MetaTags } from '@redwoodjs/web'
+import { useForm } from 'react-hook-form'
 
 const NewBordleGamePage = () => {
   const {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm()
+  } = useForm({ mode: 'onSubmit' })
 
   const onSubmit = (values) => console.log(values)
 
@@ -16,13 +15,13 @@ const NewBordleGamePage = () => {
     <>
       <MetaTags title="NewBordleGame" description="NewBordleGame page" />
 
-      <Form onSubmit={handleSubmit(onSubmit)} config={{ mode: 'onBlur' }}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Stack>
           <TextField
             {...register('playerName', { required: true })}
             label={'Player *'}
             variant="outlined"
-          />
+          ></TextField>
           {errors?.playerName?.type === 'required' && (
             <p>This field is required</p>
           )}
@@ -34,9 +33,9 @@ const NewBordleGamePage = () => {
           {errors?.secretWord?.type === 'required' && (
             <p>This field is required</p>
           )}
-          <Submit>Save</Submit>
+          <Button type="submit">Save</Button>
         </Stack>
-      </Form>
+      </form>
     </>
   )
 }

@@ -29,6 +29,8 @@ const Routes = () => {
       </Set>
       <Set wrap={BordleLayout}>
         <Route path="/" page={HomePage} name="home" />
+        <Route path="/bordle-game/{id:Int}" page={BordleGamePage} name="bordleGame" />
+        <Route path="/new-bordle-game" page={NewBordleGamePage} name="newBordleGame" />
         <Route notfound page={NotFoundPage} />
       </Set>
     </Router>

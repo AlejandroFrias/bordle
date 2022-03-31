@@ -1,3 +1,4 @@
+import { AppBar } from '@mui/material'
 import { Link, routes } from '@redwoodjs/router'
 
 const BordleLayout = ({ children }) => {
@@ -10,7 +11,10 @@ const BordleLayout = ({ children }) => {
         <nav>
           <ul>
             <li>
-              <Link to={routes.home()}>Home</Link>
+              <Link to={routes.home()}>Games</Link>
+            </li>
+            <li>
+              <Link to={routes.newBordleGame()}>New</Link>
             </li>
           </ul>
         </nav>

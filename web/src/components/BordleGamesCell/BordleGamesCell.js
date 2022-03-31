@@ -31,7 +31,7 @@ export const Success = ({ bordleGames }) => {
     <article key={bordleGame.id}>
       <header>
         <h2>
-          <Link to={routes.game({ id: bordleGame.id })}>
+          <Link to={routes.bordleGame({ id: bordleGame.id })}>
             {bordleGame.playerOne['name']} VS {bordleGame.playerTwo['name']}
           </Link>
         </h2>

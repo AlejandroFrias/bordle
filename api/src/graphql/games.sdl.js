@@ -22,7 +22,12 @@ export const schema = gql`
     playerOneWord: String!
     playerTwoWord: String!
   }
-
+  input CreateBordleGameInput {
+    playerOneName: String!
+    playerTwoName: String!
+    playerOneWord: String!
+    playerTwoWord: String!
+  }
   input UpdateGameInput {
     playerOneId: Int
     playerTwoId: Int
@@ -32,6 +37,7 @@ export const schema = gql`
 
   type Mutation {
     createGame(input: CreateGameInput!): Game! @requireAuth
+    createBordleGame(input: CreateBordleGameInput!): Game! @requireAuth
     updateGame(id: Int!, input: UpdateGameInput!): Game! @requireAuth
     deleteGame(id: Int!): Game! @requireAuth
   }

@@ -1,19 +1,22 @@
 export const standard = defineScenario({
+  player: {
+    playerOne: {
+      data: { name: 'Player One' },
+    },
+    playerTwo: {
+      data: { name: 'Player Two' },
+    },
+  },
   game: {
-    one: {
+    one: (scenario) => ({
       data: {
         playerOneWord: 'ghost',
         playerTwoWord: 'bread',
         updatedAt: '2022-03-30T19:20:55Z',
-        playerOne: {
-          create: { name: 'Player One', updatedAt: '2022-03-30T19:20:55Z' },
-        },
-
-        playerTwo: {
-          create: { name: 'Player Two', updatedAt: '2022-03-30T19:20:55Z' },
-        },
+        playerOneId: scenario.player.playerOne.id,
+        playerTwoId: scenario.player.playerTwo.id,
       },
-    },
+    }),
 
     two: {
       data: {

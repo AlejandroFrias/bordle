@@ -16,6 +16,25 @@ export const createGame = ({ input }) => {
   })
 }
 
+export const createBordleGame = async ({ input }) => {
+  const playerOne = await db.player.findUnique({
+    where: { name: input.playerOneName },
+  })
+  const playerTwo = await db.player.findUnique({
+    where: { name: input.playerTwoName },
+  })
+  const newInput = {
+    playerOneId: playerOne.id,
+    playerTwoId: playerTwo.id,
+    playerOneWord: input.playerOneWord,
+    playerTwoWord: input.playerTwoWord,
+  }
+
+  return db.game.create({
+    data: newInput,
+  })
+}
+
 export const updateGame = ({ id, input }) => {
   return db.game.update({
     data: input,

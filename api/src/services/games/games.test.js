@@ -1,4 +1,11 @@
-import { games, game, createGame, updateGame, deleteGame } from './games'
+import {
+  games,
+  game,
+  createGame,
+  updateGame,
+  deleteGame,
+  createBordleGame,
+} from './games'
 
 // Generated boilerplate tests do not account for all circumstances
 // and can fail without adjustments, e.g. Float and DateTime types.
@@ -26,7 +33,7 @@ describe('games', () => {
         playerTwoId: scenario.game.two.playerTwoId,
         playerOneWord: 'String',
         playerTwoWord: 'String',
-        updatedAt: '2022-03-30T19:20:55Z',
+        // updatedAt: '2022-03-30T19:20:55Z',
       },
     })
 
@@ -34,7 +41,26 @@ describe('games', () => {
     expect(result.playerTwoId).toEqual(scenario.game.two.playerTwoId)
     expect(result.playerOneWord).toEqual('String')
     expect(result.playerTwoWord).toEqual('String')
-    expect(result.updatedAt).toEqual('2022-03-30T19:20:55Z')
+    // const isoString = new Date('2021-10-15T19:40:33Z').toISOString()
+    // expect(result.updatedAt).toEqual(isoString)
+  })
+
+  scenario('creates a bordle game', async (scenario) => {
+    const result = await createBordleGame({
+      input: {
+        playerOneName: scenario.player.playerOne.name,
+        playerTwoName: scenario.player.playerTwo.name,
+        playerOneWord: 'happy',
+        playerTwoWord: 'right',
+        // updatedAt: '2022-03-30T19:20:55Z',
+      },
+    })
+
+    expect(result.playerOneId).toEqual(scenario.game.one.playerOneId)
+    expect(result.playerTwoId).toEqual(scenario.game.one.playerTwoId)
+    expect(result.playerOneWord).toEqual('happy')
+    expect(result.playerTwoWord).toEqual('right')
+    // expect(result.updatedAt).toEqual('2022-03-30T19:20:55Z')
   })
 
   scenario('updates a game', async (scenario) => {

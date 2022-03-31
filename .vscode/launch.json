@@ -2,8 +2,8 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "command": "yarn redwood dev",
-      "name": "launch development",
+      "command": "yarn redwood test",
+      "name": "test",
       "request": "launch",
       "type": "node-terminal"
     }

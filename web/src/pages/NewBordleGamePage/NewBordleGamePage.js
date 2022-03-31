@@ -1,6 +1,14 @@
 import { Button, Stack, TextField } from '@mui/material'
-import { MetaTags } from '@redwoodjs/web'
+import { MetaTags, useMutation } from '@redwoodjs/web'
 import { useForm } from 'react-hook-form'
+
+const CREATE_BORDLE_GAME = gql`
+  mutation CreateBordleGameMutation($input: CreateBordleGameInput!) {
+    createBordleGame(input: $input) {
+      id
+    }
+  }
+`
 
 const NewBordleGamePage = () => {
   const {
@@ -9,7 +17,11 @@ const NewBordleGamePage = () => {
     formState: { errors },
   } = useForm({ mode: 'onSubmit' })
 
-  const onSubmit = (values) => console.log(values)
+  const [create] = useMutation(CREATE_BORDLE_GAME)
+  const onSubmit = (data) => {
+    create({ variables: { input: data } })
+    console.log(data)
+  }
 
   return (
     <>
@@ -18,21 +30,25 @@ const NewBordleGamePage = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack>
           <TextField
-            {...register('playerName', { required: true })}
-            label={'Player *'}
-            variant="outlined"
+            {...register('playerOneName', { required: true })}
+            label={'Player One *'}
+            variant="filled"
           ></TextField>
-          {errors?.playerName?.type === 'required' && (
-            <p>This field is required</p>
-          )}
           <TextField
-            {...register('secretWord', { required: true })}
-            label={'Secret Word *'}
+            {...register('playerTwoName', { required: true })}
+            label={'Player Two *'}
+            variant="filled"
+          ></TextField>
+          <TextField
+            {...register('playerOneWord', { required: true })}
+            label={'Word One *'}
             variant="filled"
           />
-          {errors?.secretWord?.type === 'required' && (
-            <p>This field is required</p>
-          )}
+          <TextField
+            {...register('playerTwoWord', { required: true })}
+            label={'Word Two *'}
+            variant="filled"
+          />
           <Button type="submit">Save</Button>
         </Stack>
       </form>

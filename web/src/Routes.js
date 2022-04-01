@@ -10,22 +10,26 @@
 import { Router, Route, Set } from '@redwoodjs/router'
 import GamesLayout from 'src/layouts/GamesLayout'
 import PlayersLayout from 'src/layouts/PlayersLayout'
+import AdminLayout from './layouts/AdminLayout/AdminLayout'
 import BordleLayout from './layouts/BordleLayout/BordleLayout'
 
 const Routes = () => {
   return (
     <Router>
-      <Set wrap={GamesLayout}>
-        <Route path="/games/new" page={GameNewGamePage} name="newGame" />
-        <Route path="/games/{id:Int}/edit" page={GameEditGamePage} name="editGame" />
-        <Route path="/games/{id:Int}" page={GameGamePage} name="game" />
-        <Route path="/games" page={GameGamesPage} name="games" />
-      </Set>
-      <Set wrap={PlayersLayout}>
-        <Route path="/players/new" page={PlayerNewPlayerPage} name="newPlayer" />
-        <Route path="/players/{id:Int}/edit" page={PlayerEditPlayerPage} name="editPlayer" />
-        <Route path="/players/{id:Int}" page={PlayerPlayerPage} name="player" />
-        <Route path="/players" page={PlayerPlayersPage} name="players" />
+      <Set wrap={AdminLayout}>
+        <Route path="/admin" page={AdminPage} name="admin" />
+        <Set wrap={GamesLayout}>
+          <Route path="/admin/games/new" page={GameNewGamePage} name="newGame" />
+          <Route path="/admin/games/{id:Int}/edit" page={GameEditGamePage} name="editGame" />
+          <Route path="/admin/games/{id:Int}" page={GameGamePage} name="game" />
+          <Route path="/admin/games" page={GameGamesPage} name="games" />
+        </Set>
+        <Set wrap={PlayersLayout}>
+          <Route path="/admin/players/new" page={PlayerNewPlayerPage} name="newPlayer" />
+          <Route path="/admin/players/{id:Int}/edit" page={PlayerEditPlayerPage} name="editPlayer" />
+          <Route path="/admin/players/{id:Int}" page={PlayerPlayerPage} name="player" />
+          <Route path="/admin/players" page={PlayerPlayersPage} name="players" />
+        </Set>
       </Set>
       <Set wrap={BordleLayout}>
         <Route path="/" page={HomePage} name="home" />

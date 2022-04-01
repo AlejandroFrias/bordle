@@ -1,8 +1,10 @@
 import { Link, routes } from '@redwoodjs/router'
 
 export const QUERY = gql`
-  query BordleGamesQuery {
-    bordleGames: games {
+  query BordleGamesQuery($playerId: Int!) {
+    # query BordleGamesQuery {
+    bordleGames: myGames(playerId: $playerId) {
+      # bordleGames: games {
       id
       playerOne {
         name
@@ -20,7 +22,11 @@ export const QUERY = gql`
 
 export const Loading = () => <div>Loading...</div>
 
-export const Empty = () => <div>Empty</div>
+export const Empty = () => (
+  <div>
+    <Link to={routes.newBordleGame()}>New Game</Link>
+  </div>
+)
 
 export const Failure = ({ error }) => (
   <div style={{ color: 'red' }}>Error: {error.message}</div>

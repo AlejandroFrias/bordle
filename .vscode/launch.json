@@ -1,9 +1,10 @@
 {
   "version": "0.2.0",
   "configurations": [
+
     {
-      "command": "yarn redwood test",
-      "name": "test",
+      "command": "yarn redwood dev",
+      "name": "launch",
       "request": "launch",
       "type": "node-terminal"
     }

@@ -1,7 +1,6 @@
 import { Button, Stack, TextField } from '@mui/material'
-import { Form, FormError } from '@redwoodjs/forms'
+import { Form, FormError, useForm } from '@redwoodjs/forms'
 import { MetaTags, useMutation } from '@redwoodjs/web'
-import { useForm } from 'react-hook-form'
 
 const CREATE_BORDLE_GAME = gql`
   mutation CreateBordleGameMutation($input: CreateBordleGameInput!) {

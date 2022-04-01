@@ -17,6 +17,7 @@
     "@emotion/styled": "^11.8.1",
     "@mui/icons-material": "^5.5.1",
     "@mui/material": "^5.5.3",
+    "@redwoodjs/auth": "0.50.0",
     "@redwoodjs/forms": "^0.50.0",
     "@redwoodjs/router": "^0.50.0",
     "@redwoodjs/web": "^0.50.0",

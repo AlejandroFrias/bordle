@@ -4,6 +4,14 @@ export const games = () => {
   return db.game.findMany()
 }
 
+export const myGames = ({ playerId }) => {
+  return db.game.findMany({
+    where: {
+      playerOneId: playerId,
+    },
+  })
+}
+
 export const game = ({ id }) => {
   return db.game.findUnique({
     where: { id },

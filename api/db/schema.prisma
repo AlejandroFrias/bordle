@@ -18,9 +18,9 @@ generator client {
 // }
 model Game {
   id          Int    @id @default(autoincrement())
-  playerOne   Player @relation("PlayerOne", fields: [playerOneId], references: [id])
+  playerOne   Player @relation("PlayerOne", fields: [playerOneId], references: [id], onDelete: Cascade)
   playerOneId Int
-  playerTwo   Player @relation("PlayerTwo", fields: [playerTwoId], references: [id])
+  playerTwo   Player @relation("PlayerTwo", fields: [playerTwoId], references: [id], onDelete: Cascade)
   playerTwoId Int
 
   playerOneWord String
@@ -35,9 +35,27 @@ model Player {
   id   Int    @id @default(autoincrement())
   name String @unique
 
+  playerOneGames Game[] @relation("PlayerOne")
+  playerTwoGames Game[] @relation("PlayerTwo")
+
+  user      User?
   // Common stuff
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
-  playerOneGames Game[]   @relation("PlayerOne")
-  playerTwoGames Game[]   @relation("PlayerTwo")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model User {
+  id                  Int       @id @default(autoincrement())
+  email               String    @unique
+  hashedPassword      String
+  salt                String
+  resetToken          String?
+  resetTokenExpiresAt DateTime?
+
+  player   Player @relation(fields: [playerId], references: [id], onDelete: Cascade)
+  playerId Int    @unique
+
+  // Standard fields
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

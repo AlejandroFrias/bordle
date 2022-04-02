@@ -1,5 +1,7 @@
 import { Button, Stack, TextField } from '@mui/material'
+import { useAuth } from '@redwoodjs/auth'
 import { Form, FormError, useForm } from '@redwoodjs/forms'
+import { navigate, routes } from '@redwoodjs/router'
 import { MetaTags, useMutation } from '@redwoodjs/web'
 
 const CREATE_BORDLE_GAME = gql`
@@ -10,14 +12,21 @@ const CREATE_BORDLE_GAME = gql`
   }
 `
 
-const NewBordleGamePage = () => {
-  const formMethods = useForm({ mode: 'onBlur' })
-
+function NewBordleGamePage() {
+  const { currentUser } = useAuth()
   const [create, { loading, error }] = useMutation(CREATE_BORDLE_GAME)
-  const onSubmit = (data) => {
-    create({ variables: { input: data } })
-    console.log(data)
+  async function onSubmit(data) {
+    const inputData = {
+      playerOneName: currentUser.player.name,
+      playerTwoName: data.playerTwoName,
+      playerOneWord: data.playerOneWord,
+      playerTwoWord: data.playerTwoWord,
+    }
+    const newGame = await create({ variables: { input: inputData } })
+    navigate(routes.bordleGame({ id: newGame.data.createBordleGame.id }))
   }
+
+  const formMethods = useForm({ mode: 'onBlur' })
 
   return (
     <>
@@ -26,11 +35,6 @@ const NewBordleGamePage = () => {
       <Form formMethods={formMethods} onSubmit={onSubmit}>
         <Stack>
           <FormError error={error} />
-          <TextField
-            {...formMethods.register('playerOneName', { required: true })}
-            label={'Player One *'}
-            variant="filled"
-          ></TextField>
           <TextField
             {...formMethods.register('playerTwoName', { required: true })}
             label={'Player Two *'}

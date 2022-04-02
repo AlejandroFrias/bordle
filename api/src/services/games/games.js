@@ -7,7 +7,14 @@ export const games = () => {
 export const myGames = ({ playerId }) => {
   return db.game.findMany({
     where: {
-      playerOneId: playerId,
+      OR: [
+        {
+          playerOneId: playerId,
+        },
+        {
+          playerTwoId: playerId,
+        },
+      ],
     },
   })
 }

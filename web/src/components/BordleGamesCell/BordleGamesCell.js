@@ -4,7 +4,6 @@ export const QUERY = gql`
   query BordleGamesQuery($playerId: Int!) {
     # query BordleGamesQuery {
     bordleGames: myGames(playerId: $playerId) {
-      # bordleGames: games {
       id
       playerOne {
         name

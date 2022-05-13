@@ -2,7 +2,6 @@ import { Link, routes } from '@redwoodjs/router'
 
 export const QUERY = gql`
   query BordleGamesQuery($playerId: Int!) {
-    # query BordleGamesQuery {
     bordleGames: myGames(playerId: $playerId) {
       id
       playerOne {

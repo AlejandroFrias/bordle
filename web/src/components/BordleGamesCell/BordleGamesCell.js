@@ -2,7 +2,7 @@ import { Link, routes } from '@redwoodjs/router'
 
 export const QUERY = gql`
   query BordleGamesQuery($playerId: Int!) {
-    bordleGames: myGames(playerId: $playerId) {
+    myCoolestBordleGames: myGames(playerId: $playerId) {
       id
       playerOne {
         name
@@ -30,8 +30,8 @@ export const Failure = ({ error }) => (
   <div style={{ color: 'red' }}>Error: {error.message}</div>
 )
 
-export const Success = ({ bordleGames }) => {
-  return bordleGames.map((bordleGame) => (
+export const Success = ({ myCoolestBordleGames }) => {
+  return myCoolestBordleGames.map((bordleGame) => (
     <article key={bordleGame.id}>
       <header>
         <h2>
